@@ -1,12 +1,10 @@
-player.onChat("\\\\Wand", function (Block2) {
-    player.execute(
-    "give @s wooden_axe"
-    )
+player.onChat("min", function () {
+    agent.teleport(world(Math.min(Pos1.getValue(Axis.X), Pos2.getValue(Axis.X)), Math.min(Pos1.getValue(Axis.Y), Pos2.getValue(Axis.Y)), Math.min(Pos1.getValue(Axis.Z), Pos2.getValue(Axis.Z))), WEST)
 })
-player.onChat("\\\\Pos1", function () {
-    WhichPos = 0
-    Pos1 = player.position()
-    player.tell(mobs.target(LOCAL_PLAYER), "Position 1 has been set to " + Pos1 + ".")
+player.onChat("\\\\Pos2", function () {
+    WhichPos = -1
+    Pos2 = player.position()
+    player.tell(mobs.target(LOCAL_PLAYER), "Position 2 has been set to " + Pos2 + ".")
 })
 player.onItemInteracted(WOODEN_AXE, function () {
     WhichPos = Math.abs(WhichPos) - 1
@@ -18,7 +16,31 @@ player.onItemInteracted(WOODEN_AXE, function () {
         player.tell(mobs.target(LOCAL_PLAYER), "Position 2 has been set to " + Pos2 + ".")
     }
 })
-player.onChat("\\\\rep", function (Block2, Block3) {
+player.onChat("stackv", function (num1) {
+    blocks.clone(
+    Pos1,
+    Pos2,
+    positions.add(
+    world(Math.min(Pos1.getValue(Axis.X), Pos2.getValue(Axis.X)), Math.min(Pos1.getValue(Axis.Y), Pos2.getValue(Axis.Y)), Math.min(Pos1.getValue(Axis.Z), Pos2.getValue(Axis.Z))),
+    world(0, num1, 0)
+    ),
+    CloneMask.Replace,
+    CloneMode.Force
+    )
+})
+player.onChat("stackw", function (num1) {
+    blocks.clone(
+    Pos1,
+    Pos2,
+    positions.add(
+    world(Math.min(Pos1.getValue(Axis.X), Pos2.getValue(Axis.X)), Math.min(Pos1.getValue(Axis.Y), Pos2.getValue(Axis.Y)), Math.min(Pos1.getValue(Axis.Z), Pos2.getValue(Axis.Z))),
+    world(num1, 0, 0)
+    ),
+    CloneMask.Replace,
+    CloneMode.Force
+    )
+})
+player.onChat("rep", function (Block3, Block2) {
     blocks.replace(
     Block2,
     Block3,
@@ -26,7 +48,19 @@ player.onChat("\\\\rep", function (Block2, Block3) {
     Pos2
     )
 })
-player.onChat("\\\\paste", function () {
+player.onChat("moves", function (num1) {
+    blocks.clone(
+    Pos1,
+    Pos2,
+    positions.add(
+    world(Math.min(Pos1.getValue(Axis.X), Pos2.getValue(Axis.X)), Math.min(Pos1.getValue(Axis.Y), Pos2.getValue(Axis.Y)), Math.min(Pos1.getValue(Axis.Z), Pos2.getValue(Axis.Z))),
+    world(0, 0, num1)
+    ),
+    CloneMask.Replace,
+    CloneMode.Move
+    )
+})
+player.onChat("paste", function () {
     blocks.clone(
     Pos1,
     Pos2,
@@ -35,7 +69,7 @@ player.onChat("\\\\paste", function () {
     CloneMode.Normal
     )
 })
-player.onChat("\\\\Fill", function (Block2) {
+player.onChat("set", function (Block2) {
     blocks.fill(
     Block2,
     Pos1,
@@ -43,7 +77,12 @@ player.onChat("\\\\Fill", function (Block2) {
     FillOperation.Replace
     )
 })
-player.onChat("\\\\pasta", function () {
+player.onChat("\\\\Wand", function (Block2) {
+    player.execute(
+    "give @s wooden_axe"
+    )
+})
+player.onChat("pasta", function () {
     blocks.clone(
     Pos1,
     Pos2,
@@ -52,10 +91,46 @@ player.onChat("\\\\pasta", function () {
     CloneMode.Normal
     )
 })
-player.onChat("\\\\Pos2", function () {
-    WhichPos = -1
-    Pos2 = player.position()
-    player.tell(mobs.target(LOCAL_PLAYER), "Position 2 has been set to " + Pos2 + ".")
+player.onChat("\\\\Pos1", function () {
+    WhichPos = 0
+    Pos1 = player.position()
+    player.tell(mobs.target(LOCAL_PLAYER), "Position 1 has been set to " + Pos1 + ".")
+})
+player.onChat("movew", function (num1) {
+    blocks.clone(
+    Pos1,
+    Pos2,
+    positions.add(
+    world(Math.min(Pos1.getValue(Axis.X), Pos2.getValue(Axis.X)), Math.min(Pos1.getValue(Axis.Y), Pos2.getValue(Axis.Y)), Math.min(Pos1.getValue(Axis.Z), Pos2.getValue(Axis.Z))),
+    world(num1, 0, 0)
+    ),
+    CloneMask.Replace,
+    CloneMode.Move
+    )
+})
+player.onChat("stacks", function (num1) {
+    blocks.clone(
+    Pos1,
+    Pos2,
+    positions.add(
+    world(Math.min(Pos1.getValue(Axis.X), Pos2.getValue(Axis.X)), Math.min(Pos1.getValue(Axis.Y), Pos2.getValue(Axis.Y)), Math.min(Pos1.getValue(Axis.Z), Pos2.getValue(Axis.Z))),
+    world(0, 0, num1)
+    ),
+    CloneMask.Replace,
+    CloneMode.Force
+    )
+})
+player.onChat("movev", function (num1) {
+    blocks.clone(
+    Pos1,
+    Pos2,
+    positions.add(
+    world(Math.min(Pos1.getValue(Axis.X), Pos2.getValue(Axis.X)), Math.min(Pos1.getValue(Axis.Y), Pos2.getValue(Axis.Y)), Math.min(Pos1.getValue(Axis.Z), Pos2.getValue(Axis.Z))),
+    world(0, num1, 0)
+    ),
+    CloneMask.Replace,
+    CloneMode.Move
+    )
 })
 let Pos2: Position = null
 let Pos1: Position = null
