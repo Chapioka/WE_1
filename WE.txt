@@ -25,7 +25,7 @@ player.onChat("movex", function (num1) {
     world(num1, 0, 0)
     ),
     CloneMask.Replace,
-    CloneMode.Force
+    CloneMode.Move
     )
 })
 player.onChat("movez", function (num1) {
@@ -37,7 +37,7 @@ player.onChat("movez", function (num1) {
     world(0, 0, num1)
     ),
     CloneMask.Replace,
-    CloneMode.Force
+    CloneMode.Move
     )
 })
 player.onChat("rep", function (Block3, Block2) {
@@ -57,7 +57,7 @@ player.onChat("movey", function (num1) {
     world(0, num1, 0)
     ),
     CloneMask.Replace,
-    CloneMode.Force
+    CloneMode.Move
     )
 })
 player.onChat("stacky", function (num1) {
